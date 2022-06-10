@@ -1,0 +1,54 @@
+# 起動済のtmux sessionがあればattachする
+# 残っていなければtmuxを起動する
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
+# ウィンドウ設定
+window:
+  # タイトルバー非表示
+  # decorations: "transparent"
+  # decorations: "none"
+  # decorations: "buttonless"
+
+  # 初期ウィンドウサイズ
+  dimensions:
+    columns: 200
+    lines: 60
+
+  # 余白設定
+  padding:
+    x: 8
+    y: 4
+
+# 透過設定
+# background_opacity: 0.9
+
+# スクロール設定
+scrolling:
+  # consoleのlogを10000行まで保持
+  history: 10000
+
+  # スクロール量は3行
+  multiplier: 3
+
+# フォント設定
+font:
+  normal:
+    family: 'HackGenNerd'
+    style: Regular
+
+  bold:
+    family: 'HackGenNerd'
+    style: Bold
+
+  size: 14.0
+
+  offset:
+    y: 1
+
+  use_thin_strokes: true
+
