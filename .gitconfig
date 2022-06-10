@@ -1,0 +1,12 @@
+[user]
+	name = risto24
+	email = 46432541+risto24@users.noreply.github.com
+[color]
+	ui = true
+[core]
+	quotepath = false
+	editor = vim
+[fetch]
+	prune = true
+[pull]
+	rebase = false
