@@ -7,6 +7,35 @@ shell:
     - -c
     - "tmux attach || tmux"
 
+# Colors (iTerm 2 default theme)
+colors:
+ # Default colors
+ primary:
+   background: '#101421'
+   foreground: '#fffbf6'
+
+ # Normal colors
+ normal:
+   black:   '#2e2e2e'
+   red:     '#eb4129'
+   green:   '#abe047'
+   yellow:  '#f6c744'
+   blue:    '#47a0f3'
+   magenta: '#7b5cb0'
+   cyan:    '#64dbed'
+   white:   '#e5e9f0'
+
+ # Bright colors
+ bright:
+   black:   '#565656'
+   red:     '#ec5357'
+   green:   '#c0e17d'
+   yellow:  '#f9da6a'
+   blue:    '#49a4f8'
+   magenta: '#a47de9'
+   cyan:    '#99faf2'
+   white:   '#ffffff'
+
 # ウィンドウ設定
 window:
   # タイトルバー非表示
@@ -16,13 +45,13 @@ window:
 
   # 初期ウィンドウサイズ
   dimensions:
-    columns: 200
-    lines: 60
+    columns: 100
+    lines: 35
 
   # 余白設定
   padding:
     x: 8
-    y: 4
+    y: 8
 
 # 透過設定
 # background_opacity: 0.9
