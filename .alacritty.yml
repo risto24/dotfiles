@@ -1,11 +1,11 @@
 # 起動済のtmux sessionがあればattachする
 # 残っていなければtmuxを起動する
 shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
+ program: /bin/zsh
+ args:
+   - -l
+   - -c
+   - "tmux attach || tmux"
 
 # Colors (iTerm 2 default theme)
 colors:
@@ -53,8 +53,8 @@ window:
     x: 8
     y: 8
 
-# 透過設定
-# background_opacity: 0.9
+  # 透過設定（これが無いとMissionControlが不安定になる）
+  background_opacity: 0.999
 
 # スクロール設定
 scrolling:
@@ -67,11 +67,11 @@ scrolling:
 # フォント設定
 font:
   normal:
-    family: 'HackGenNerd'
+    family: 'HackGen Console NF'
     style: Regular
 
   bold:
-    family: 'HackGenNerd'
+    family: 'HackGen Console NF'
     style: Bold
 
   size: 14.0

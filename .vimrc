@@ -40,6 +40,7 @@ call plug#end()
 "----------------------------------------------------------
 " 基本設定
 "----------------------------------------------------------
+set iminsert=2
 set encoding=utf-8
 scriptencoding utf-8
 " クリップボード連携
@@ -67,6 +68,12 @@ let g:netrw_preview=1
 " 矢印でも自動補完をするようにする
 inoremap <expr> <down> ((pumvisible())?("\<C-n>"):("\<down>"))
 inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
+
+" 1件でも候補があれば補完を表示し、補完の選択はEnterにする。
+" set completeopt=menuone,noinsert
+" 補完表示時のEnterで改行をしない
+" inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+
 " ビープを無効
 set visualbell t_vb=
 " マウス有効

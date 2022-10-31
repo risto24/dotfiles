@@ -56,3 +56,6 @@ fvim() {
 
 # コマンド予測変換用プラグイン
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# rbenv用
+eval "$(rbenv init - zsh)"
