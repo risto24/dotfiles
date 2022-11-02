@@ -58,4 +58,4 @@ fvim() {
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # rbenv用
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
