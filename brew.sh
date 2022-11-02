@@ -24,6 +24,7 @@ brew install --cask slack
 brew install vim
 brew install bat
 brew install fzf
+brew install tmux
 # brew install --cask alacritty
 
 # vim-plug
@@ -31,9 +32,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Fonts
-$ brew tap homebrew/cask-fonts
-$ brew install font-hackgen
-$ brew install font-hackgen-nerd
+brew tap homebrew/cask-fonts
+brew install font-hackgen
+brew install font-hackgen-nerd
 
 # node setup
 brew install nodebrew
