@@ -21,6 +21,7 @@ brew install --cask karabiner-elements
 brew install --cask alfred
 brew install --cask visual-studio-code
 brew install --cask slack
+brew install --cask coteditor
 brew install vim
 brew install bat
 brew install fzf
