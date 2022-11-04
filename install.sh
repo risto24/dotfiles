@@ -21,7 +21,7 @@ done
 cat << END
 
 **************************************************
-DOTFILES SETUP FINISHED! bye.
+dotfiles setup finished! bye.
 **************************************************
 
 END
