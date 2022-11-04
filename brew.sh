@@ -22,11 +22,15 @@ brew install --cask alfred
 brew install --cask visual-studio-code
 brew install --cask slack
 brew install --cask coteditor
+brew install --cask alacritty
+
 brew install vim
 brew install bat
 brew install fzf
 brew install tmux
-# brew install --cask alacritty
+
+brew install awscli
+brew install saml2aws
 
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
