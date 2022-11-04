@@ -29,8 +29,13 @@ brew install bat
 brew install fzf
 brew install tmux
 
+# aws
 brew install awscli
 brew install saml2aws
+
+# git secrets
+brew install git-secrets
+git secrets --register-aws --global
 
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -41,14 +46,8 @@ brew tap homebrew/cask-fonts
 brew install font-hackgen
 brew install font-hackgen-nerd
 
-# node setup
-brew install nodebrew
-nodebrew setup
-nodebrew install latest
-nodebrew use latest
-
 cat << END
 **********************************
-PACKAGE INSTALL FINISHED! bye.
+brew setup finished! bye.
 **********************************
 END

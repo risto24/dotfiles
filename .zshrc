@@ -59,3 +59,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # rbenv用
 # eval "$(rbenv init - zsh)"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
