@@ -10,17 +10,14 @@ cd $THIS_DIR
 echo "start setup..."
 
 # autosuggestionsを取得
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 # dotfiilesを設置
-for f in .??*; do
+for f in config/.??*; do
     [ "$f" = ".git" ] && continue
 
-    ln -snfv ~/github/dotfiles/config/"$f" ~/
+    ln -snfv ~/github/dotfiles/"$f" ~/
 done
-
-# iTerm config
-ln -snfv ~/github/dotfiles/config/iTermColor ~/
 
 cat << END
 
