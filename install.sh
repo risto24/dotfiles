@@ -12,11 +12,15 @@ echo "start setup..."
 # autosuggestionsを取得
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
+# dotfiilesを設置
 for f in .??*; do
     [ "$f" = ".git" ] && continue
 
-    ln -snfv ~/github/dotfiles/"$f" ~/
+    ln -snfv ~/github/dotfiles/config/"$f" ~/
 done
+
+# iTerm config
+ln -snfv ~/github/dotfiles/config/iTermColor ~/
 
 cat << END
 
