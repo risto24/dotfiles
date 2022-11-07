@@ -16,7 +16,6 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Package
-brew install --cask appcleaner
 brew install --cask karabiner-elements
 brew install --cask alfred
 brew install --cask visual-studio-code
