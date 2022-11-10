@@ -22,6 +22,7 @@ brew install --cask visual-studio-code
 brew install --cask slack
 brew install --cask coteditor
 brew install --cask alacritty
+brew install --cask sequel-ace
 
 brew install vim
 brew install bat
