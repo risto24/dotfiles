@@ -23,6 +23,7 @@ brew install --cask slack
 brew install --cask coteditor
 brew install --cask alacritty
 brew install --cask sequel-ace
+brew install --cask google-japanese-ime
 
 brew install vim
 brew install bat
