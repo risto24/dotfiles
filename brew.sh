@@ -24,11 +24,15 @@ brew install --cask coteditor
 brew install --cask alacritty
 brew install --cask sequel-ace
 brew install --cask google-japanese-ime
+brew install --cask keyboardcleantool
+brew install --cask rectangle
 
 brew install vim
 brew install bat
 brew install fzf
 brew install tmux
+brew install jq
+brew install peco
 
 # aws
 brew install awscli
