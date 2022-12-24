@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -u
 
@@ -16,18 +16,23 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Package
-brew install --cask appcleaner
 brew install --cask karabiner-elements
 brew install --cask alfred
 brew install --cask visual-studio-code
 brew install --cask slack
 brew install --cask coteditor
 brew install --cask alacritty
+brew install --cask sequel-ace
+brew install --cask google-japanese-ime
+brew install --cask keyboardcleantool
+brew install --cask rectangle
 
 brew install vim
 brew install bat
 brew install fzf
 brew install tmux
+brew install jq
+brew install peco
 
 # aws
 brew install awscli
