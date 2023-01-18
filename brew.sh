@@ -27,6 +27,7 @@ brew install vim
 brew install bat
 brew install fzf
 brew install tmux
+brew install gh
 
 # aws
 brew install awscli
