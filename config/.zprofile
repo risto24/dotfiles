@@ -9,3 +9,5 @@ export PATH=$PATH:/usr/local/go/bin
 
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export AWS_PROFILE=saml
