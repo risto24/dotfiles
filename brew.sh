@@ -33,6 +33,7 @@ brew install fzf
 brew install tmux
 brew install jq
 brew install peco
+brew install gh
 
 # aws
 brew install awscli
