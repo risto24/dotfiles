@@ -22,6 +22,9 @@ alias lg="lazygit"
 alias vi="vim"
 # internousのプロジェクトへ移動
 alias cdi="cd ~/Projects/internous"
+# ls -l
+alias ll="ls -l"
+alias la="ls -a"
 
 # 補完有効化
 autoload -U compinit; compinit -C
@@ -61,3 +64,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # eval "$(rbenv init - zsh)"
 
 # . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+eval "$(gh completion -s zsh)"
