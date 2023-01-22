@@ -26,7 +26,7 @@ brew install --cask sequel-ace
 brew install --cask google-japanese-ime
 brew install --cask keyboardcleantool
 brew install --cask rectangle
-brew install --cask notion
+# brew install --cask notion
 
 brew install vim
 brew install bat
