@@ -193,16 +193,21 @@ set hlsearch " 検索結果をハイライト
 "----------------------------------------------------------
 "対応括弧の表示を無効にする
 let loaded_matchparen = 1
-"set showmatch " 括弧の対応関係を表示する
+" 括弧の対応関係を表示する
+"set showmatch
+
 "set matchtime=1
-"source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
-"set matchpairs& matchpairs+=<:> " 対応括弧に<と>のペアを追加
+
+" Vimの「%」を拡張する
+"source $VIMRUNTIME/macros/matchit.vim
+" 対応括弧に<と>のペアを追加
+"set matchpairs& matchpairs+=<:>
 
 "----------------------------------------------------------
 " indentLine
 "----------------------------------------------------------
-let g:indentLine_color_term = 111
-let g:indentLine_color_gui = '#696969'
+"let g:indentLine_color_term = 111
+"let g:indentLine_color_gui = '#696969'
 let g:indentLine_char = '¦'
 
 "----------------------------------------------------------
