@@ -77,7 +77,7 @@ inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
 " ビープを無効
 set visualbell t_vb=
 " マウス有効
-set mouse=a
+" set mouse=a
 " 行末のチルダを削除
 highlight link EndOfBuffer Ignore
 
@@ -364,3 +364,31 @@ let g:fern#default_hidden = 1
 "左端のシンボルカラムを表示したままにする
 let g:ale_sign_column_always = 1
 
+
+"----------------------------------------------------------
+" 速度検証用スクリプト
+" 下記を実行して~/logのFUNCTIONS SORTED ON TOTAL TIMEを確認する
+" $ vim +'call ProfileCursorMove()' <カーソルを動かすのが重いファイル>
+"----------------------------------------------------------
+function! ProfileCursorMove() abort
+  let profile_file = expand('~/log/vim-profile.log')
+  if filereadable(profile_file)
+    call delete(profile_file)
+  endif
+
+  normal! gg
+  normal! zR
+
+  execute 'profile start ' . profile_file
+  profile func *
+  profile file *
+
+  augroup ProfileCursorMove
+    autocmd!
+    autocmd CursorHold <buffer> profile pause | q
+  augroup END
+
+  for i in range(100)
+    call feedkeys('j')
+  endfor
+endfunction
