@@ -25,6 +25,8 @@ alias cdi="cd ~/Projects/internous"
 # ls -l
 alias ll="ls -l"
 alias la="ls -a"
+# connect dev server
+alias dev="ssh -t dev /home/risuto-nishimura/tmux-launcher"
 
 # 補完有効化
 autoload -U compinit; compinit -C

@@ -19,6 +19,9 @@ for f in config/.??*; do
     ln -snfv ~/github/dotfiles/"$f" ~/
 done
 
+# dotfiles以外のconfigファイル
+ln -snfv ~/github/dotfiles/config/.vimrc ~/.config/init.vim
+
 cat << END
 
 **********************************
