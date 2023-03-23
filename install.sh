@@ -19,10 +19,6 @@ for f in config/.??*; do
     ln -snfv ~/github/dotfiles/"$f" ~/
 done
 
-# neovim setup
-mkdir ~/.config/nvim
-ln -snfv ~/github/dotfiles/config/.vimrc ~/.config/nvim/init.vim
-
 cat << END
 
 **********************************
