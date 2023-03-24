@@ -21,7 +21,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # create init.vim
-ln -snfv ~/github/dotfiles/config/.vimrc ~/.config/nvim/init.vim
+ln -snfv ~/github/dotfiles/config/init.vim ~/.config/nvim/init.vim
 
 cat << END
 
