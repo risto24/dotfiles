@@ -64,6 +64,8 @@ set visualbell t_vb=
 " set mouse=a
 " 行末のチルダを削除
 highlight link EndOfBuffer Ignore
+" 外部でファイルに変更がされた場合は読みなおす
+set autoread
 
 "----------------------------------------------------------
 " 文字
@@ -196,24 +198,10 @@ let g:indentLine_char = '¦'
 "----------------------------------------------------------
 " fzf
 "----------------------------------------------------------
-" ripgrepで検索中、?を押すとプレビュー:
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
 " Filesコマンドにもプレビューを出す
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
-
 
 "----------------------------------------------------------
 " lightline
@@ -290,6 +278,20 @@ endfunction
 noremap <silent> <Leader>. :Fern . -drawer -width=35 -toggle<CR><C-w>=
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 let g:fern#default_hidden = 1
+
+"----------------------------------------------------------
+" coc.nvim
+"----------------------------------------------------------
+" Kを押した時に型情報などを表示する
+nnoremap <silent> K :<C-u>call <SID>show_documentation()<CR>
+
+function! s:show_documentation() abort
+  if index(['vim','help'], &filetype) >= 0
+    execute 'h ' . expand('<cword>')
+  elseif coc#rpc#ready()
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
 "----------------------------------------------------------
 " 速度検証用スクリプト
