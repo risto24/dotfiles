@@ -1,10 +1,10 @@
 "----------------------------------------------------------
 " 導入プラグイン
 "----------------------------------------------------------
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
   " git
   Plug 'airblade/vim-gitgutter'
-  " monokaiテーマ
+  " テーマ
   Plug 'crusoexia/vim-monokai'
   " ステータスラインの表示内容強化
   Plug 'itchyny/lightline.vim'
@@ -12,35 +12,19 @@ call plug#begin()
   Plug 'Yggdroot/indentLine'
   " 末尾の全角半角空白文字を赤くハイライト
   Plug 'bronson/vim-trailing-whitespace'
-  " pug予測変換
-  Plug 'dNitro/vim-pug-complete'
-  " jsonファイル表示用
-  Plug 'elzr/vim-json'
   " fzf(あいまい検索)
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   " lsp
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings', {'merged': 0}
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " ファイラー
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-hijack.vim'
-  " シンタックス
-  Plug 'digitaltoad/vim-pug'
-  " Plug 'ap/vim-css-color'
-  " ALE
-  Plug 'dense-analysis/ale'
 call plug#end()
 
 "----------------------------------------------------------
 " 基本設定
 "----------------------------------------------------------
-set iminsert=2
 set encoding=utf-8
 scriptencoding utf-8
 " クリップボード連携
@@ -80,6 +64,8 @@ set visualbell t_vb=
 " set mouse=a
 " 行末のチルダを削除
 highlight link EndOfBuffer Ignore
+" 外部でファイルに変更がされた場合は読みなおす
+set autoread
 
 "----------------------------------------------------------
 " 文字
@@ -121,12 +107,11 @@ syntax on
 colorscheme monokai
 
 set t_Co=256
-"set termguicolors TRUECOLORに対応したGUI用設定
 let g:rehash256 = 1
 
 "記号列（左のエリア）を透明にする
 highlight clear SignColumn
-" 背景を透明にする
+"背景を透明にする
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight LineNr ctermbg=none
@@ -146,11 +131,11 @@ let &t_EI .= "\e[1 q" "カーソル形状変更
 "----------------------------------------------------------
 " タブページ
 "----------------------------------------------------------
-"set showtabline=2 "常にタブを表示させておく
-"let s:palette = g:lightline#colorscheme#powerline#palette
-"let s:palette.tabline.tabsel = [ [ '#1c1e1e', '#afdf02', 016, 118, 'bold' ] ]
-"let s:palette.tabline.middle = [ [ '#f8f8f8', '#1c1e1e', 015, 016, 'bold' ] ]
-"unlet s:palette
+" set showtabline=2 "常にタブを表示させておく
+" let s:palette = g:lightline#colorscheme#powerline#palette
+" let s:palette.tabline.tabsel = [ [ '#1c1e1e', '#afdf02', 016, 118, 'bold' ] ]
+" let s:palette.tabline.middle = [ [ '#f8f8f8', '#1c1e1e', 015, 016, 'bold' ] ]
+" unlet s:palette
 
 "----------------------------------------------------------
 " ステータスライン
@@ -191,8 +176,8 @@ set hlsearch " 検索結果をハイライト
 "----------------------------------------------------------
 " カッコ・タグの対応
 "----------------------------------------------------------
-"対応括弧の表示を無効にする
-let loaded_matchparen = 1
+"対応括弧の表示
+" let loaded_matchparen = 1
 " 括弧の対応関係を表示する
 "set showmatch
 
@@ -211,44 +196,12 @@ let loaded_matchparen = 1
 let g:indentLine_char = '¦'
 
 "----------------------------------------------------------
-" HTMLおよび括弧の自動補完
-"----------------------------------------------------------
- augroup MyXML
-   autocmd!
-   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
- augroup END
-
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-
-"----------------------------------------------------------
-"elzr/vim-json
-"----------------------------------------------------------
-let g:vim_json_syntax_conceal = 0
-
-"----------------------------------------------------------
 " fzf
 "----------------------------------------------------------
-" ripgrepで検索中、?を押すとプレビュー:
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
 " Filesコマンドにもプレビューを出す
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
-
 
 "----------------------------------------------------------
 " lightline
@@ -319,38 +272,6 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-
-"----------------------------------------------------------
-" vim-lsp
-"----------------------------------------------------------
-if empty(globpath(&rtp, 'autoload/lsp.vim'))
-  finish
-endif
-
-function! s:on_lsp_buffer_enabled() abort
-  setlocal omnifunc=lsp#complete
-  setlocal signcolumn=yes
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <f2> <plug>(lsp-rename)
-  inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-endfunction
-
-augroup lsp_install
-  au!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
-
-" ALE使用のため構文チェックは無効化
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 0
-
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 200
-let g:lsp_text_edit_enabled = 1
-let g:lsp_document_code_action_signs_enabled = 0
-
 "----------------------------------------------------------
 " Fern
 "----------------------------------------------------------
@@ -359,11 +280,18 @@ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 let g:fern#default_hidden = 1
 
 "----------------------------------------------------------
-" ALE
+" coc.nvim
 "----------------------------------------------------------
-"左端のシンボルカラムを表示したままにする
-let g:ale_sign_column_always = 1
+" Kを押した時に型情報などを表示する
+nnoremap <silent> K :<C-u>call <SID>show_documentation()<CR>
 
+function! s:show_documentation() abort
+  if index(['vim','help'], &filetype) >= 0
+    execute 'h ' . expand('<cword>')
+  elseif coc#rpc#ready()
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
 "----------------------------------------------------------
 " 速度検証用スクリプト

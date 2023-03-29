@@ -31,6 +31,7 @@ brew install --cask sotify
 brew install --cask licecap
 
 brew install vim
+brew install neovim
 brew install bat
 brew install fzf
 brew install tmux
