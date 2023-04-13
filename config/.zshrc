@@ -62,10 +62,8 @@ fvim() {
 # コマンド予測変換用プラグイン
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# rbenv用
-# eval "$(rbenv init - zsh)"
-
-# . /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
+
+ONELOGIN_MFA_IP_ADDRESS=$(curl -SsL http://checkip.amazonaws.com/)
+
