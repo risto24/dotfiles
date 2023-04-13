@@ -65,5 +65,3 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
 
-ONELOGIN_MFA_IP_ADDRESS=$(curl -SsL http://checkip.amazonaws.com/)
-

@@ -11,3 +11,5 @@ export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export AWS_PROFILE=saml
+export ONELOGIN_MFA_IP_ADDRESS=$(curl -SsL http://checkip.amazonaws.com/)
+
