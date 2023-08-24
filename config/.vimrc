@@ -77,7 +77,7 @@ inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
 " ビープを無効
 set visualbell t_vb=
 " マウス有効
-" set mouse=a
+set mouse=a
 " 行末のチルダを削除
 highlight link EndOfBuffer Ignore
 
@@ -146,7 +146,9 @@ let &t_EI .= "\e[1 q" "カーソル形状変更
 "----------------------------------------------------------
 " タブページ
 "----------------------------------------------------------
-"set showtabline=2 "常にタブを表示させておく
+" 常にタブを表示させておく
+"set showtabline=2
+
 "let s:palette = g:lightline#colorscheme#powerline#palette
 "let s:palette.tabline.tabsel = [ [ '#1c1e1e', '#afdf02', 016, 118, 'bold' ] ]
 "let s:palette.tabline.middle = [ [ '#f8f8f8', '#1c1e1e', 015, 016, 'bold' ] ]

@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
   " git
   Plug 'airblade/vim-gitgutter'
   " テーマ
-  Plug 'crusoexia/vim-monokai'
+  Plug 'EdenEast/nightfox.nvim'
   " ステータスラインの表示内容強化
   Plug 'itchyny/lightline.vim'
   " インデントの可視化
@@ -31,7 +31,9 @@ scriptencoding utf-8
 "set clipboard=unnamed,autoselect
 "set clipboard&
 "set clipboard^=unnamedplus
-set clipboard+=unnamed
+"set clipboard+=unnamed
+" クリップボード無効化 for EC2
+set clipboard=
 " バックアップファイルを作らない
 set nobackup
 " スワップファイルを作らない
@@ -61,11 +63,16 @@ inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
 " ビープを無効
 set visualbell t_vb=
 " マウス有効
-" set mouse=a
+set mouse=a
 " 行末のチルダを削除
 highlight link EndOfBuffer Ignore
 " 外部でファイルに変更がされた場合は読みなおす
 set autoread
+" スペルチェックを有効化
+" set spell
+" set spelllang=en,cjk
+" ステータスラインを１つにする
+set laststatus=3
 
 "----------------------------------------------------------
 " 文字
@@ -104,19 +111,13 @@ command! Ttm :tab terminal
 " カラースキーム
 "----------------------------------------------------------
 syntax on
-colorscheme monokai
+
+lua require('nightfox').setup({options={transparent=true}})
+
+colorscheme nightfox
 
 set t_Co=256
 let g:rehash256 = 1
-
-"記号列（左のエリア）を透明にする
-highlight clear SignColumn
-"背景を透明にする
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-highlight LineNr ctermbg=none
-highlight Folded ctermbg=none
-highlight EndOfBuffer ctermbg=none
 
 "----------------------------------------------------------
 " カーソル
@@ -165,6 +166,8 @@ set smartindent " 改行時に前の行の構文をチェックし次の行の�
 set list
 set listchars=tab:->,
 
+" jsonのダブルクオートを表示する
+let g:vim_json_conceal=0
 "----------------------------------------------------------
 " 文字列検索
 "----------------------------------------------------------
@@ -292,6 +295,9 @@ function! s:show_documentation() abort
     call CocActionAsync('doHover')
   endif
 endfunction
+
+" エラーフロートの色を明るい赤にする
+highlight CocErrorFloat ctermfg=196
 
 "----------------------------------------------------------
 " 速度検証用スクリプト
