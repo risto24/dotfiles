@@ -54,8 +54,8 @@ let g:netrw_banner = 0
 " プレビューウィンドウを垂直分割で表示する
 let g:netrw_preview=1
 " 矢印でも自動補完をするようにする
-inoremap <expr> <down> ((pumvisible())?("\<C-n>"):("\<down>"))
-inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
+" inoremap <expr> <down> ((pumvisible())?("\<C-n>"):("\<down>"))
+" inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
 
 " 1件でも候補があれば補完を表示し、補完の選択はEnterにする。
 " set completeopt=menuone,noinsert
@@ -290,7 +290,8 @@ endfunction
 " Fern
 "----------------------------------------------------------
 noremap <silent> <Leader>. :Fern . -drawer -width=35 -toggle<CR><C-w>=
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+" karabinerでC-nをdownに設定しているのでdownをマッピングする
+nnoremap <down> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 let g:fern#default_hidden = 1
 
 "----------------------------------------------------------
