@@ -20,6 +20,8 @@ call plug#begin('~/.config/nvim/plugged')
   " ファイラー
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-hijack.vim'
+  " SSH先のnvimとのclipboad連携
+  Plug 'ShikChen/osc52.vim'
 call plug#end()
 
 "----------------------------------------------------------
@@ -73,6 +75,15 @@ set autoread
 " set spelllang=en,cjk
 " ステータスラインを１つにする
 set laststatus=3
+
+"----------------------------------------------------------
+" clipboard
+"----------------------------------------------------------
+augroup osc52
+  " 最初にこのグループのautocmd定義を削除する。
+  autocmd!
+  autocmd TextYankPost * if v:event.operator ==# 'y' | call SendViaOSC52(getreg(v:event.regname)) | endif
+augroup END
 
 "----------------------------------------------------------
 " 文字
