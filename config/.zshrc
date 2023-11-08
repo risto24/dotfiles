@@ -25,8 +25,6 @@ alias cdi="cd ~/Projects/internous"
 # ls -l
 alias ll="ls -l"
 alias la="ls -a"
-# connect dev server
-alias dev="ssh -t dev /home/risuto-nishimura/tmux-launcher"
 
 # 補完有効化
 autoload -U compinit; compinit -C
@@ -64,4 +62,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
+
+# 環境依存用スクリプトを読み込む
+source ~/secret.zsh
 
