@@ -64,5 +64,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(gh completion -s zsh)"
 
 # 環境依存用スクリプトを読み込む
-source ~/secret.zsh
+source ~/.secret.zsh
 
