@@ -66,3 +66,5 @@ eval "$(gh completion -s zsh)"
 # 環境依存用スクリプトを読み込む
 source ~/.secret.zsh
 
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
