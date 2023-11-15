@@ -64,7 +64,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(gh completion -s zsh)"
 
 # 環境依存用スクリプトを読み込む
-source ~/.secret.zsh
+if [ -e ~/.secret.zsh ]; then
+  source ~/.secret.zsh
+fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
