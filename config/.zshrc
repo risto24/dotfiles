@@ -68,5 +68,3 @@ if [ -e ~/.secret.zsh ]; then
   source ~/.secret.zsh
 fi
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
