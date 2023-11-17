@@ -14,8 +14,10 @@ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false
 
-cat i< END
+cat << END
+
 **********************************
 asdf setup finished! bye.
 **********************************
+
 END
