@@ -58,7 +58,8 @@ fvim() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # コマンド予測変換用プラグイン
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
