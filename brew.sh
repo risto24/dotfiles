@@ -29,6 +29,7 @@ brew install --cask rectangle
 # brew install --cask notion
 brew install --cask sotify
 brew install --cask licecap
+brew install --cask 1password
 
 brew install vim
 brew install neovim
@@ -38,6 +39,7 @@ brew install tmux
 brew install jq
 brew install peco
 brew install gh
+brew install zsh-autosuggestions
 
 # aws
 brew install awscli
