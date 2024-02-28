@@ -15,7 +15,7 @@ echo "start install..."
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Package
+# package
 brew install --cask karabiner-elements
 brew install --cask alfred
 brew install --cask visual-studio-code
@@ -30,7 +30,10 @@ brew install --cask rectangle
 brew install --cask sotify
 brew install --cask licecap
 brew install --cask 1password
+brew install --cask numi
+brew install --cask deepl
 
+# for dev
 brew install vim
 brew install neovim
 brew install bat
