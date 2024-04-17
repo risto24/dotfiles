@@ -32,6 +32,7 @@ brew install --cask licecap
 brew install --cask 1password
 brew install --cask numi
 brew install --cask deepl
+brew install --cask whatsapp
 
 # for dev
 brew install vim
