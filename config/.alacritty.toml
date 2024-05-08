@@ -41,8 +41,8 @@ history = 10000
 multiplier = 3
 
 [shell]
-args = ["-l"]
 program = "/bin/zsh"
+args = ["-l", "-c", "tmux attach || tmux"]
 
 [window.dimensions]
 columns = 100
