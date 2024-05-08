@@ -21,7 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-hijack.vim'
   " SSH先のnvimとのclipboad連携
-  Plug 'ShikChen/osc52.vim'
+  " Plug 'ShikChen/osc52.vim'
 call plug#end()
 
 "----------------------------------------------------------
@@ -29,13 +29,6 @@ call plug#end()
 "----------------------------------------------------------
 set encoding=utf-8
 scriptencoding utf-8
-" クリップボード連携
-"set clipboard=unnamed,autoselect
-"set clipboard&
-"set clipboard^=unnamedplus
-"set clipboard+=unnamed
-" クリップボード無効化 for EC2
-set clipboard=
 " バックアップファイルを作らない
 set nobackup
 " スワップファイルを作らない
@@ -79,11 +72,17 @@ set laststatus=3
 "----------------------------------------------------------
 " clipboard
 "----------------------------------------------------------
-augroup osc52
-  " 最初にこのグループのautocmd定義を削除する。
-  autocmd!
-  autocmd TextYankPost * if v:event.operator ==# 'y' | call SendViaOSC52(getreg(v:event.regname)) | endif
-augroup END
+" クリップボード連携
+set clipboard=unnamedplus
+
+" クリップボード無効化 for EC2
+" set clipboard=
+
+" クリップボード連携 for EC2
+" augroup osc52
+"   autocmd!
+"   autocmd TextYankPost * if v:event.operator ==# 'y' | call SendViaOSC52(getreg(v:event.regname)) | endif
+" augroup END
 
 "----------------------------------------------------------
 " 文字
