@@ -22,6 +22,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lambdalisue/fern-hijack.vim'
   " SSH先のnvimとのclipboad連携
   " Plug 'ShikChen/osc52.vim'
+  " Go
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Syntax
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 "----------------------------------------------------------
@@ -309,6 +313,19 @@ endfunction
 
 " エラーフロートの色を明るい赤にする
 highlight CocErrorFloat ctermfg=196
+
+"----------------------------------------------------------
+" tree-sitter
+"----------------------------------------------------------
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+}
+EOF
 
 "----------------------------------------------------------
 " 速度検証用スクリプト

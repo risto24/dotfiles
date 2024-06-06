@@ -18,3 +18,5 @@
 	allowed = AKIAIOSFODNN7EXAMPLE
 	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
