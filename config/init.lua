@@ -3,22 +3,29 @@
 -- ----------------------------------------------------------
 vim.cmd [[
   call plug#begin('~/.config/nvim/plugged')
-  Plug 'airblade/vim-gitgutter'
-  Plug 'EdenEast/nightfox.nvim'
-  Plug 'Yggdroot/indentLine'
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'lambdalisue/fern.vim'
-  Plug 'lambdalisue/fern-hijack.vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'itchyny/lightline.vim'
+  Plug 'Yggdroot/indentLine'
+  Plug 'bronson/vim-trailing-whitespace'
+  " Git
+  Plug 'airblade/vim-gitgutter'
+  " Colorscheme
+  Plug 'EdenEast/nightfox.nvim'
+  "FZF
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  " ファイラ
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-hijack.vim'
+  " LSP
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
   call plug#end()
 ]]
 
@@ -260,7 +267,6 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ['<C-l>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm { select = true },
   }),
