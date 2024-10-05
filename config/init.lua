@@ -203,7 +203,7 @@ vim.g.fern_default_hidden = 1
 -- ----------------------------------------------------------
 -- LSP
 -- ----------------------------------------------------------
--- 1. LSP Sever management
+-- LSP Sever management
 require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
@@ -220,7 +220,7 @@ require('mason-lspconfig').setup_handlers({ function(server)
   require('lspconfig')[server].setup(opt)
 end })
 
--- 2. build-in LSP function
+-- build-in LSP function
 -- keyboard shortcut
 vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
@@ -244,14 +244,15 @@ set updatetime=500
 highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
 highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
 highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
-augroup lsp_document_highlight
-  autocmd!
-  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-  autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-augroup END
+" FIXME: なんか解決できなかったときにError出るので保留
+" augroup lsp_document_highlight
+"   autocmd!
+"   autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
+"   autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
+" augroup END
 ]]
 
--- 3. completion (hrsh7th/nvim-cmp)
+-- Completion (hrsh7th/nvim-cmp)
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -275,11 +276,24 @@ cmp.setup({
   },
 })
 
---4. lsp settings
+-- LSP settings
 local lspconfig = require('lspconfig')
 lspconfig.ruby_lsp.setup {
   init_options = {
     formatter = 'syntax_tree',
   },
 }
+lspconfig.syntax_tree.setup{}
 
+-- Auto format
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format {async = false, id = args.data.client_id }
+      end,
+    })
+  end
+})
