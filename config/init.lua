@@ -7,6 +7,8 @@ vim.cmd [[
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'bronson/vim-trailing-whitespace'
+  " Copirot
+  Plug 'github/copilot.vim'
   " Git
   Plug 'airblade/vim-gitgutter'
   " Colorscheme
@@ -133,35 +135,35 @@ vim.cmd [[
 -- ----------------------------------------------------------
 -- カーソル
 -- ----------------------------------------------------------
-vim.o.number = true -- 行番号を表示
+vim.o.number = true                  -- 行番号を表示
 -- set cursorline -- カーソルラインをハイライト
 vim.o.backspace = 'indent,eol,start' -- バックスペースキーの有効化
-vim.cmd [[let &t_EI .= "\e[1 q"]] -- カーソル形状変更
+vim.cmd [[let &t_EI .= "\e[1 q"]]    -- カーソル形状変更
 
 -- ----------------------------------------------------------
 -- ステータスライン
 -- ----------------------------------------------------------
-vim.o.laststatus=2 -- ステータスラインを常に表示
+vim.o.laststatus = 2  -- ステータスラインを常に表示
 vim.o.showmode = true -- 現在のモードを表示
-vim.o.showcmd = true -- 打ったコマンドをステータスラインの下に表示
-vim.o.ruler = true -- ステータスラインの右側にカーソルの位置を表示する
+vim.o.showcmd = true  -- 打ったコマンドをステータスラインの下に表示
+vim.o.ruler = true    -- ステータスラインの右側にカーソルの位置を表示する
 
 
 -- ----------------------------------------------------------
 -- コマンドモード
 -- ----------------------------------------------------------
 vim.o.wildmenu = true -- コマンドモードの補完
-vim.o.history = 5000 -- 保存するコマンド履歴の数
+vim.o.history = 5000  -- 保存するコマンド履歴の数
 
 -- ----------------------------------------------------------
 -- タブ・インデント
 -- ----------------------------------------------------------
-vim.o.expandtab=true -- タブ入力を複数の空白入力に置き換える
-vim.o.tabstop=2 -- 画面上でタブ文字が占める幅
-vim.o.softtabstop=2 -- 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-vim.o.shiftwidth=2 -- smartindentで増減する幅
-vim.o.autoindent=true -- 改行時に前の行のインデントを継続する
-vim.o.smartindent=true -- 改行時に前の行の構文をチェックし次の行のインデントを増減する
+vim.o.expandtab = true   -- タブ入力を複数の空白入力に置き換える
+vim.o.tabstop = 2        -- 画面上でタブ文字が占める幅
+vim.o.softtabstop = 2    -- 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+vim.o.shiftwidth = 2     -- smartindentで増減する幅
+vim.o.autoindent = true  -- 改行時に前の行のインデントを継続する
+vim.o.smartindent = true -- 改行時に前の行の構文をチェックし次の行のインデントを増減する
 
 --タブ、空白、改行の可視化
 vim.o.list = true
@@ -173,10 +175,10 @@ vim.cmd [[let g:vim_json_conceal=0]]
 -- ----------------------------------------------------------
 -- 文字列検索
 -- ----------------------------------------------------------
-vim.o.incsearch = true -- インクリメンタルサーチ. １文字入力毎に検索を行う
+vim.o.incsearch = true  -- インクリメンタルサーチ. １文字入力毎に検索を行う
 vim.o.ignorecase = true -- 検索パターンに大文字小文字を区別しない
-vim.o.smartcase = true -- 検索パターンに大文字を含んでいたら大文字小文字を区別する
-vim.o.hlsearch = true -- 検索結果をハイライト
+vim.o.smartcase = true  -- 検索パターンに大文字を含んでいたら大文字小文字を区別する
+vim.o.hlsearch = true   -- 検索結果をハイライト
 
 -- ----------------------------------------------------------
 -- indentLine
@@ -196,8 +198,10 @@ vim.cmd [[
 -- ----------------------------------------------------------
 -- Fern
 -- ----------------------------------------------------------
-vim.api.nvim_set_keymap('n', '<Leader>.', ':Fern . -drawer -width=35 -toggle<CR><C-w>=', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<down>', ':Fern . -reveal=% -drawer -toggle -width=40<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>.', ':Fern . -drawer -width=35 -toggle<CR><C-w>=',
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<down>', ':Fern . -reveal=% -drawer -toggle -width=40<CR>',
+  { noremap = true, silent = true })
 vim.g.fern_default_hidden = 1
 
 -- ----------------------------------------------------------
@@ -222,7 +226,7 @@ end })
 
 -- build-in LSP function
 -- keyboard shortcut
-vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -283,7 +287,7 @@ lspconfig.ruby_lsp.setup {
     formatter = 'syntax_tree',
   },
 }
-lspconfig.syntax_tree.setup{}
+lspconfig.syntax_tree.setup {}
 
 -- Auto format
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -292,7 +296,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
-        vim.lsp.buf.format {async = false, id = args.data.client_id }
+        vim.lsp.buf.format { async = false, id = args.data.client_id }
       end,
     })
   end
