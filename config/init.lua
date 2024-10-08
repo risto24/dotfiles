@@ -190,7 +190,32 @@ vim.g.indentLine_char = '¦'
 -- ----------------------------------------------------------
 -- fzf
 -- ----------------------------------------------------------
-vim.keymap.set("n", "<up>", require('fzf-lua').files, { desc = "Fzf Files" })
+local actions = require "fzf-lua.actions"
+require 'fzf-lua'.setup {
+  files = {
+    git_icons   = false,
+    file_icons  = false,
+    color_icons = false,
+  },
+  grep = {
+    git_icons   = false,
+    file_icons  = false,
+    color_icons = false,
+  }
+}
+
+-- Custom command
+-- vim.api.nvim_create_user_command('FzfFiles', function()
+--   require('fzf-lua').files()
+-- end, { desc = "Fzf files" })
+-- vim.api.nvim_create_user_command('FzfGrep', function()
+--   require('fzf-lua').live_grep()
+-- end, { desc = "Fzf live grep" })
+
+-- Custom Keymap
+vim.keymap.set("n", "<up>", require('fzf-lua').files, { desc = "Fzf files" })
+vim.keymap.set("n", "<right>", require('fzf-lua').live_grep, { desc = "Fzf live grep" })
+
 
 -- ----------------------------------------------------------
 -- Fern
