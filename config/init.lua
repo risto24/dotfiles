@@ -7,15 +7,17 @@ vim.cmd [[
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'bronson/vim-trailing-whitespace'
+  " Treesitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " Copirot
   Plug 'github/copilot.vim'
   " Git
   Plug 'airblade/vim-gitgutter'
   " Colorscheme
   Plug 'EdenEast/nightfox.nvim'
-  "FZF
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  "fzf
+  Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+  Plug 'nvim-tree/nvim-web-devicons'
   " ファイラ
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-hijack.vim'
@@ -188,12 +190,8 @@ vim.g.indentLine_char = '¦'
 -- ----------------------------------------------------------
 -- fzf
 -- ----------------------------------------------------------
--- Filesコマンドにもプレビューを出す
-vim.g.fzf_layout = { window = { width = 0.7, height = 0.6 } }
-vim.cmd [[
-  command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
-]]
+vim.keymap.set("n", "<up>", require('fzf-lua').files, { desc = "Fzf Files" })
+-- nnoremap <c-P> <cmd>lua require('fzf-lua').files()<CR>
 
 -- ----------------------------------------------------------
 -- Fern
@@ -204,6 +202,59 @@ vim.api.nvim_set_keymap('n', '<down>', ':Fern . -reveal=% -drawer -toggle -width
   { noremap = true, silent = true })
 vim.g.fern_default_hidden = 1
 
+-- ----------------------------------------------------------
+-- Custom command
+-- ----------------------------------------------------------
+vim.api.nvim_create_user_command('CopyFilePath', function()
+  local file_path = vim.fn.expand('%:p') -- ファイルのフルパスを取得
+  vim.fn.setreg('+', file_path)          -- クリップボードにコピー
+  print("File path copied: " .. file_path)
+end, {})
+
+-- ----------------------------------------------------------
+-- TreeSitter
+-- ----------------------------------------------------------
+require 'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "ruby" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  -- auto_install = true,
+
+  -- List of parsers to ignore installing (or "all")
+  -- ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 -- ----------------------------------------------------------
 -- LSP
 -- ----------------------------------------------------------

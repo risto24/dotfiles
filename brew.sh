@@ -44,6 +44,8 @@ brew install jq
 brew install peco
 brew install gh
 brew install zsh-autosuggestions
+brew install ripgrep
+brew install fd
 
 # aws
 brew install awscli
