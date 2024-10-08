@@ -191,7 +191,6 @@ vim.g.indentLine_char = '¦'
 -- fzf
 -- ----------------------------------------------------------
 vim.keymap.set("n", "<up>", require('fzf-lua').files, { desc = "Fzf Files" })
--- nnoremap <c-P> <cmd>lua require('fzf-lua').files()<CR>
 
 -- ----------------------------------------------------------
 -- Fern
