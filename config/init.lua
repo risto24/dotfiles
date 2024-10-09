@@ -201,6 +201,10 @@ require 'fzf-lua'.setup {
     git_icons   = false,
     file_icons  = false,
     color_icons = false,
+  },
+  buffers = {
+    file_icons  = false,
+    color_icons = false,
   }
 }
 
@@ -211,11 +215,14 @@ require 'fzf-lua'.setup {
 -- vim.api.nvim_create_user_command('FzfGrep', function()
 --   require('fzf-lua').live_grep()
 -- end, { desc = "Fzf live grep" })
+-- vim.api.nvim_create_user_command('FzfBuffers', function()
+--   require('fzf-lua').buffers()
+-- end, { desc = "Fzf buffers" })
 
 -- Custom Keymap
 vim.keymap.set("n", "<up>", require('fzf-lua').files, { desc = "Fzf files" })
 vim.keymap.set("n", "<right>", require('fzf-lua').live_grep, { desc = "Fzf live grep" })
-
+vim.keymap.set("n", "<left>", require('fzf-lua').buffers, { desc = "Fzf buffers" })
 
 -- ----------------------------------------------------------
 -- Fern
