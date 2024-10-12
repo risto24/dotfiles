@@ -20,8 +20,8 @@ mkdir ~/.config/nvim/plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# create init.vim
-ln -snfv ~/github/dotfiles/config/init.vim ~/.config/nvim/init.vim
+# create init.lua
+ln -snfv ~/github/dotfiles/config/init.lua ~/.config/nvim/init.lua
 
 cat << END
 
