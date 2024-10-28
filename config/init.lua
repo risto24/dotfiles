@@ -237,8 +237,8 @@ vim.g.fern_default_hidden = 1
 -- Custom command
 -- ----------------------------------------------------------
 vim.api.nvim_create_user_command('CopyFilePath', function()
-  local file_path = vim.fn.expand('%:p') -- ファイルのフルパスを取得
-  vim.fn.setreg('+', file_path)          -- クリップボードにコピー
+  local file_path = vim.fn.expand('%') -- ファイルの相対パスを取得
+  vim.fn.setreg('+', file_path)        -- クリップボードにコピー
   print("File path copied: " .. file_path)
 end, {})
 
