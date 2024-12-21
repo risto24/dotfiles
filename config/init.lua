@@ -209,6 +209,9 @@ require 'fzf-lua'.setup {
 }
 
 -- Custom command
+vim.api.nvim_create_user_command('GStatus', function()
+  require('fzf-lua').git_status()
+end, { desc = "Fzf git_status" })
 -- vim.api.nvim_create_user_command('FzfFiles', function()
 --   require('fzf-lua').files()
 -- end, { desc = "Fzf files" })
