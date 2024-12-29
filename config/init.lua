@@ -234,7 +234,7 @@ vim.api.nvim_set_keymap('n', '<Leader>.', ':Fern . -drawer -width=35 -toggle<CR>
   { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<down>', ':Fern . -reveal=% -drawer -toggle -width=40<CR>',
   { noremap = true, silent = true })
-vim.g.fern_default_hidden = 1
+vim.g['fern#default_hidden'] = 1
 
 -- ----------------------------------------------------------
 -- Custom command
