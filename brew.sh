@@ -22,16 +22,15 @@ brew install --cask visual-studio-code
 brew install --cask slack
 brew install --cask coteditor
 brew install --cask alacritty
-brew install --cask sequel-ace
-brew install --cask google-japanese-ime
 brew install --cask keyboardcleantool
-# brew install --cask notion
+brew install --cask notion
 brew install --cask spotify
 brew install --cask licecap
 brew install --cask 1password
 brew install --cask numi
 brew install --cask deepl
 brew install --cask whatsapp
+brew install --cask tableplus
 
 # for dev
 brew install vim
