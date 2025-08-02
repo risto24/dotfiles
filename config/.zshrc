@@ -61,7 +61,7 @@ fvim() {
 # source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
 
 # 環境依存用スクリプトを読み込む
@@ -69,5 +69,3 @@ if [ -e ~/.secret.zsh ]; then
   source ~/.secret.zsh
 fi
 
-
-. /usr/local/opt/asdf/libexec/asdf.sh
