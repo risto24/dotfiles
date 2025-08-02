@@ -69,3 +69,5 @@ if [ -e ~/.secret.zsh ]; then
   source ~/.secret.zsh
 fi
 
+
+. /usr/local/opt/asdf/libexec/asdf.sh

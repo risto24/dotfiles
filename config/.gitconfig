@@ -1,7 +1,7 @@
 [user]
 	name = risto24
 	email = 46432541+risto24@users.noreply.github.com
-	signingkey = ~/.ssh/id_ed25519.pub
+  # signingkey = ~/.ssh/id_ed25519.pub
 [color]
 	ui = true
 [core]
@@ -23,6 +23,6 @@
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
 [commit]
-	gpgsign = true
+  # gpgsign = true
 [gpg]
-	format = ssh
+  # format = ssh
