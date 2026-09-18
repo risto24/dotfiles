@@ -19,6 +19,10 @@ for f in config/.??*; do
     ln -snfv ~/github/dotfiles/"$f" ~/
 done
 
+# temirnal系
+ln -snfv ~/github/dotfiles/config/config.toml ~/.config/herdr/
+ln -snfv ~/github/dotfiles/config/kitty ~/.config/
+
 cat << END
 
 **********************************

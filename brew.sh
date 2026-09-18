@@ -21,7 +21,6 @@ brew install --cask alfred
 brew install --cask visual-studio-code
 brew install --cask slack
 brew install --cask coteditor
-brew install --cask alacritty
 brew install --cask keyboardcleantool
 brew install --cask notion
 brew install --cask spotify
@@ -31,6 +30,7 @@ brew install --cask numi
 brew install --cask deepl
 brew install --cask whatsapp
 brew install --cask tableplus
+brew install --cask kitty
 
 # for dev
 brew install vim
