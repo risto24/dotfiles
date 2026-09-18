@@ -7,8 +7,6 @@ vim.cmd [[
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'bronson/vim-trailing-whitespace'
-  " Treesitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " Copirot
   Plug 'github/copilot.vim'
   " Git
@@ -246,69 +244,29 @@ vim.api.nvim_create_user_command('CopyFilePath', function()
 end, {})
 
 -- ----------------------------------------------------------
--- TreeSitter
--- ----------------------------------------------------------
-require 'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "ruby" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  -- auto_install = true,
-
-  -- List of parsers to ignore installing (or "all")
-  -- ignore_install = { "javascript" },
-
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-  highlight = {
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
--- ----------------------------------------------------------
 -- LSP
 -- ----------------------------------------------------------
--- LSP Sever management
+-- デフォルト機能・補完用 Capabilities の一括設定
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+  ),
+})
+
+-- サーバー個別の設定
+vim.lsp.config('ruby_lsp', {
+  init_options = {
+    formatter = 'syntax_tree',
+  },
+})
+
+-- LSP Sever management (Mason)
 require('mason').setup()
 require('mason-lspconfig').setup({
   handlers = {
     function(server)
-      local opt = {
-        -- -- Function executed when the LSP server startup
-        -- on_attach = function(client, bufnr)
-        --   local opts = { noremap=true, silent=true }
-        --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-        -- end,
-        capabilities = require('cmp_nvim_lsp').default_capabilities(
-          vim.lsp.protocol.make_client_capabilities()
-        )
-      }
-      require('lspconfig')[server].setup(opt)
+      -- サーバーを有効化 (Neovim 0.11+ の推奨表記)
+      vim.lsp.enable(server)
     end
   }
 })
@@ -316,7 +274,7 @@ require('mason-lspconfig').setup({
 -- build-in LSP function
 -- keyboard shortcut
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>') -- formatting() は古いAPIのため format() に推奨変更
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
@@ -327,20 +285,16 @@ vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+
 -- LSP handlers
 vim.diagnostic.config({ virtual_text = false })
+
 -- Reference highlight
 vim.cmd [[
 set updatetime=500
 highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
 highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
 highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#00000000 guibg=#363636
-" FIXME: なんか解決できなかったときにError出るので保留
-" augroup lsp_document_highlight
-"   autocmd!
-"   autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-"   autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-" augroup END
 ]]
 
 -- Completion (hrsh7th/nvim-cmp)
@@ -366,15 +320,6 @@ cmp.setup({
     ghost_text = true,
   },
 })
-
--- LSP settings
-local lspconfig = require('lspconfig')
-lspconfig.ruby_lsp.setup {
-  init_options = {
-    formatter = 'syntax_tree',
-  },
-}
-lspconfig.syntax_tree.setup {}
 
 -- Auto format
 vim.api.nvim_create_autocmd("LspAttach", {
