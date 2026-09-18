@@ -1,5 +1,17 @@
 onboarding = false
-[ui]
-window_title = ""
+
+[theme]
+name = "terminal"
+
 [keys]
 prefix = "ctrl+j"
+
+[ui]
+mouse_capture = false
+pane_gaps = false
+hide_tab_bar_when_single_tab = true
+pane_scrollbars=false
+
+[experimental]
+pane_history = false
+
