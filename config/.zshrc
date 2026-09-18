@@ -69,3 +69,4 @@ if [ -e ~/.secret.zsh ]; then
   source ~/.secret.zsh
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
