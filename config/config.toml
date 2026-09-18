@@ -7,7 +7,7 @@ name = "terminal"
 prefix = "ctrl+j"
 
 [ui]
-mouse_capture = false
+# mouse_capture = false
 pane_gaps = false
 hide_tab_bar_when_single_tab = true
 pane_scrollbars=false
