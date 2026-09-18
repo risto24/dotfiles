@@ -61,7 +61,6 @@ fvim() {
 # source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-. $(brew --prefix asdf)/libexec/asdf.sh
 eval "$(gh completion -s zsh)"
 
 # 環境依存用スクリプトを読み込む
@@ -70,3 +69,10 @@ if [ -e ~/.secret.zsh ]; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+# . $(brew --prefix asdf)/libexec/asdf.sh
+# . $(brew --prefix asdf)/asdf.sh
+export ASDF_DATA_DIR="$HOME/.asdf"
+# shims（asdfで入れた言語の実行ファイル群）にパスを通す
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+# （任意）コマンドの入力補完を有効にしたい場合のみ追加
+fpath=($(brew --prefix asdf)/share/zsh/site-functions $fpath)

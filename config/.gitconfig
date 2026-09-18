@@ -7,7 +7,6 @@
 [core]
 	quotepath = false
 	editor = vim
-	hooksPath = /Users/risuto-nishimura/.git-hooks
 [fetch]
 	prune = true
 [pull]
@@ -26,3 +25,8 @@
   gpgsign = true
 [gpg]
   format = ssh
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+  insteadOf = git://github.com/
+  insteadOf = git://git@github.com/

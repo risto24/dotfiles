@@ -8,4 +8,3 @@ export PGDATA=/usr/local/var/postgres
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
