@@ -1,7 +1,12 @@
-cursor_shape block
-
-
 # BEGIN_KITTY_THEME
-# GitHub Dark
+# Bogster (Dark)
 include current-theme.conf
 # END_KITTY_THEME
+
+font_size 13.0
+
+window_padding_width 5
+
+shell_integration no-title
+# window_title_template ""
+# tab_title_template ""

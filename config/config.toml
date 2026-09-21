@@ -12,6 +12,9 @@ pane_gaps = false
 hide_tab_bar_when_single_tab = true
 pane_scrollbars=false
 
+[theme.custom]
+selection_bg = "#414D62"
+
 [experimental]
 pane_history = false
 

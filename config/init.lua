@@ -7,8 +7,6 @@ vim.cmd [[
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'bronson/vim-trailing-whitespace'
-  " Copirot
-  Plug 'github/copilot.vim'
   " Git
   Plug 'airblade/vim-gitgutter'
   " Colorscheme
