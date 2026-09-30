@@ -63,11 +63,6 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(gh completion -s zsh)"
 
-# 環境依存用スクリプトを読み込む
-if [ -e ~/.secret.zsh ]; then
-  source ~/.secret.zsh
-fi
-
 export PATH="$HOME/.local/bin:$PATH"
 # . $(brew --prefix asdf)/libexec/asdf.sh
 # . $(brew --prefix asdf)/asdf.sh
@@ -76,3 +71,9 @@ export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
 # （任意）コマンドの入力補完を有効にしたい場合のみ追加
 fpath=($(brew --prefix asdf)/share/zsh/site-functions $fpath)
+
+# 環境依存用スクリプトを読み込む
+if [ -e ~/.secret.zsh ]; then
+  source ~/.secret.zsh
+fi
+
