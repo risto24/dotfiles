@@ -11,6 +11,7 @@ prefix = "ctrl+j"
 pane_gaps = false
 hide_tab_bar_when_single_tab = true
 pane_scrollbars=false
+window_title = ""
 
 [theme.custom]
 selection_bg = "#323D50"
