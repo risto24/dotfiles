@@ -44,6 +44,7 @@ brew install gh
 brew install zsh-autosuggestions
 brew install ripgrep
 brew install fd
+brew install leaf-markdown-viewer
 
 # aws
 brew install awscli
